@@ -34,21 +34,24 @@ const ProductItem = ({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <Image
-        src={productItem.imageUrl}
-        alt="image-place-holder"
-        className="product-item__img"
-        width={300}
-        loading="lazy"
-        height={300}
-        objectFit={'contain'}
-      ></Image>
-      <div
-        className="product-item__price-tag"
-        id={`product-item-${productItemId}`}
-      >
-        € {productItem.price}
+      <div className="image-container">
+        <Image
+          src={productItem.imageUrl}
+          alt="image-place-holder"
+          className="product-item__img"
+          width={300}
+          loading="lazy"
+          height={300}
+          objectFit={'contain'}
+        ></Image>
+        <div
+          className="product-item__price-tag"
+          id={`product-item-${productItemId}`}
+        >
+          € {productItem.price}
+        </div>
       </div>
+
       <div className="product-item__info-container">
         {productItem.description}
         {productItem.tags.map((item, i) => {
