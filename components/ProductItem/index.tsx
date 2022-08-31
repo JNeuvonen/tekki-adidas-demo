@@ -9,15 +9,17 @@ export interface ProductItemProps {
 }
 const ProductItem = ({
   productItem,
+  productType,
   productItemId,
 }: {
   productItem: ProductItemProps
+  productType: string
   productItemId: number
 }) => {
   const [hover, setHover] = useState(false)
 
   useEffect(() => {
-    const elem = document.getElementById(`product-item-${productItemId}`)
+    const elem = document.getElementById(`${productType}-${productItemId}`)
     if (hover) {
       if (elem) {
         elem.style.marginBottom = '8px'
@@ -46,7 +48,7 @@ const ProductItem = ({
         ></Image>
         <div
           className="product-item__price-tag"
-          id={`product-item-${productItemId}`}
+          id={`${productType}-${productItemId}`}
         >
           € {productItem.price}
         </div>

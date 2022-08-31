@@ -2,40 +2,16 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
 import 'swiper/css'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import CategoryNav from '../components/CategoryNav'
-import ProductItem from '../components/ProductItem'
-import { DUMMY_DATA, populateWithDummyData } from '../utils/general'
-import useWindowDimensions from '../utils/hooks/useWindowDimensions'
+import ScrollableCategory from '../components/ScrollableCategory'
+import { populateWithDummyData } from '../utils/general'
 
 const Home: NextPage = () => {
-  const categories = useRef(['Back to school', 'New Arrivals', 'Coming soon'])
-  const [selectedCategory, setSelectedCategory] = useState<
-    'Back to school' | 'New Arrivals' | 'Coming soon'
-  >('Back to school')
-
-  const categoryItems = useRef(DUMMY_DATA)
-  const [swiperInstance, setSwiperInstance] = useState<any>(null)
-
-  const { width }: any = useWindowDimensions()
-
-  const [slidersPerView, setSlidersPerView] = useState(1)
-
-  useEffect(() => {
-    const maxSlides = Math.floor(width / 315)
-    setSlidersPerView(maxSlides + 1)
-  }, [width])
-
-  const nextSlide = () => {
-    swiperInstance.slideNext()
-  }
-
-  const prevSlide = () => {
-    swiperInstance.slidePrev()
-  }
+  const categoryItems: any = useRef(null)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     categoryItems.current = populateWithDummyData(30)
+    setMounted(true)
   }, [])
 
   return (
@@ -46,38 +22,21 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <CategoryNav
-        categories={categories.current}
-        setterFunction={setSelectedCategory}
-        selectedCategory={selectedCategory}
-        prevSlide={prevSlide}
-        nextSlide={nextSlide}
-      />
-      <Swiper
-        className="products"
-        slidesPerView={slidersPerView}
-        navigation
-        spaceBetween={10}
-        pagination={{ clickable: true }}
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-        onReachEnd={(e) => {
-          if (swiperInstance) {
-            swiperInstance.slideTo(0, 0)
-          }
-        }}
-      >
-        {categoryItems.current[selectedCategory].map((item, i) => {
-          return (
-            <SwiperSlide key={i}>
-              <ProductItem
-                key={i}
-                productItem={item}
-                productItemId={i}
-              ></ProductItem>
-            </SwiperSlide>
-          )
-        })}
-      </Swiper>
+      {mounted && (
+        <>
+          <ScrollableCategory
+            categoryArray={['Back to school', 'New Arrivals', 'Coming soon']}
+            defaultCategory={'Back to school'}
+            data={categoryItems.current}
+          />
+
+          <ScrollableCategory
+            categoryArray={['Recommended for you', 'Only at adidas']}
+            defaultCategory={'Recommended for you'}
+            data={categoryItems.current}
+          />
+        </>
+      )}
     </div>
   )
 }

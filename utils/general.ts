@@ -1,38 +1,3 @@
-export const DUMMY_DATA = {
-  'Back to school': [
-    {
-      description: 'Essentials logo Backpack',
-      imageUrl:
-        'https://assets.adidas.com/images/w_600,f_auto,q_auto/9ec7bfc0fdfa4770877bac860119113d_9366/Essentials_Logo_Backpack_Black_GN2014_01_standard.jpg',
-      price: 30,
-      tags: ['Tennis'],
-      bundleDeal: true,
-    },
-  ],
-
-  'New Arrivals': [
-    {
-      description: 'Essentials logo Backpack',
-      imageUrl:
-        'https://assets.adidas.com/images/w_600,f_auto,q_auto/9ec7bfc0fdfa4770877bac860119113d_9366/Essentials_Logo_Backpack_Black_GN2014_01_standard.jpg',
-      price: 30,
-      tags: ['Tennis'],
-      bundleDeal: true,
-    },
-  ],
-
-  'Coming soon': [
-    {
-      description: 'Essentials logo Backpack',
-      imageUrl:
-        'https://assets.adidas.com/images/w_600,f_auto,q_auto/9ec7bfc0fdfa4770877bac860119113d_9366/Essentials_Logo_Backpack_Black_GN2014_01_standard.jpg',
-      price: 30,
-      tags: ['Tennis'],
-      bundleDeal: true,
-    },
-  ],
-}
-
 const IMAGE_ENDPOINTS = {
   'Back to school': [
     'https://assets.adidas.com/images/w_600,f_auto,q_auto/9ec7bfc0fdfa4770877bac860119113d_9366/Essentials_Logo_Backpack_Black_GN2014_01_standard.jpg',
@@ -51,16 +16,33 @@ const IMAGE_ENDPOINTS = {
     'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/6c64c89e570f44e79df4ae6f012e27ce_9366/Supernova_2_TME_Shoes_White_GX1674_01_standard.jpg',
     'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/8b8bd41668e84a648fa3adfa0007dd8d_9366/NMD_S1_RYAT_Brown_GV6638_01_standard.jpg',
   ],
+  'Recommended for you': [
+    'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/9fb7e9f128424c58a032ae9201300bf7_9366/Solarcontrol_Shoes_Beige_GX9221_01_standard.jpg',
+    'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/6c64c89e570f44e79df4ae6f012e27ce_9366/Supernova_2_TME_Shoes_White_GX1674_01_standard.jpg',
+    'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/8b8bd41668e84a648fa3adfa0007dd8d_9366/NMD_S1_RYAT_Brown_GV6638_01_standard.jpg',
+  ],
+  'Only at adidas': [
+    'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/9fb7e9f128424c58a032ae9201300bf7_9366/Solarcontrol_Shoes_Beige_GX9221_01_standard.jpg',
+    'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/6c64c89e570f44e79df4ae6f012e27ce_9366/Supernova_2_TME_Shoes_White_GX1674_01_standard.jpg',
+    'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/8b8bd41668e84a648fa3adfa0007dd8d_9366/NMD_S1_RYAT_Brown_GV6638_01_standard.jpg',
+  ],
 }
 
 export const populateWithDummyData = (entries: number) => {
-  const DUMMY_DATA = {
+  const DATA = {
     'Back to school': [],
     'New Arrivals': [],
     'Coming soon': [],
+    'Recommended for you': [],
+    'Only at adidas': [],
   }
   const populateType = (
-    category: 'Back to school' | 'New Arrivals' | 'Coming soon'
+    category:
+      | 'Back to school'
+      | 'New Arrivals'
+      | 'Coming soon'
+      | 'Recommended for you'
+      | 'Only at adidas'
   ) => {
     for (let i = 0; i < entries; i++) {
       const random = Math.floor(Math.random() * 3)
@@ -75,13 +57,15 @@ export const populateWithDummyData = (entries: number) => {
       item['bundleDeal'] = true
 
       //@ts-ignore
-      DUMMY_DATA[category].push(item)
+      DATA[category].push(item)
     }
   }
 
   populateType('Back to school')
   populateType('New Arrivals')
   populateType('Coming soon')
+  populateType('Recommended for you')
+  populateType('Only at adidas')
 
-  return DUMMY_DATA
+  return DATA
 }

@@ -11,9 +11,7 @@ const CategoryNav = ({
 }: {
   categories: Array<string>
   selectedCategory: string
-  setterFunction: React.Dispatch<
-    React.SetStateAction<'Back to school' | 'New Arrivals' | 'Coming soon'>
-  >
+  setterFunction: React.Dispatch<React.SetStateAction<string>>
   prevSlide: () => void
   nextSlide: () => void
 }) => {
@@ -25,7 +23,7 @@ const CategoryNav = ({
 
   const categoryOnClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    value: 'Back to school' | 'New Arrivals' | 'Coming soon'
+    value: string
   ) => {
     setterFunction(value)
   }
