@@ -22,8 +22,8 @@ const Home: NextPage = () => {
   const [slidersPerView, setSlidersPerView] = useState(1)
 
   useEffect(() => {
-    const maxSlides = Math.floor(width / 380)
-    setSlidersPerView(maxSlides)
+    const maxSlides = Math.floor(width / 315)
+    setSlidersPerView(maxSlides + 1)
   }, [width])
 
   const nextSlide = () => {
@@ -57,7 +57,7 @@ const Home: NextPage = () => {
         className="products"
         slidesPerView={slidersPerView}
         navigation
-        spaceBetween={40}
+        spaceBetween={10}
         pagination={{ clickable: true }}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         onReachEnd={(e) => {

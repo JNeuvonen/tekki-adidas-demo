@@ -24,7 +24,6 @@
 
 .product-item {
   position: relative;
-  width: 300px;
   cursor: pointer;
   padding-bottom: 20px;
   margin-left: 0;
@@ -51,6 +50,7 @@
 
 .products {
   margin-top: 30px;
+  overflow-x: hidden !important;
 }
 
 .icon-button {
